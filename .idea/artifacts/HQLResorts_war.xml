@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HQLResorts:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>HQLResorts</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="HQLResorts-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="HQLResorts:war exploded" />
+    </root>
+  </artifact>
+</component>
