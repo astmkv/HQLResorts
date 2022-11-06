@@ -21,8 +21,9 @@ public class DBResortControl implements ResortControl {
         // INSERT INTO res_table() VALUES('name','france','summer',500);
         try {
             transaction.begin();
-            entityManager.createQuery("INSERT INTO res_table (name,country,season,price)" +
-                    "VALUES(res.getName(), res.getCountry(), res.getSeason(), res.getPrice())", ResTableEntity.class);
+//            entityManager.createQuery("INSERT INTO res_table (name,country,season,price)" +
+//                    "VALUES(res.getName(), res.getCountry(), res.getSeason(), res.getPrice())", ResTableEntity.class);
+            entityManager.persist(res);
             transaction.commit();
         } finally {
             if (transaction.isActive()) {
