@@ -1,9 +1,18 @@
-package com;
+package com.logic;
 
 import jakarta.persistence.*;
-
 @Entity
-@Table(name = "res_table", schema = "db_resorts", catalog = "")
+@NamedQuery(name = "get_res_by_price_limit_long",
+        query = "SELECT e " +
+                "FROM ResTableEntity e " +
+                "WHERE e.price < :price")
+//updateStartsWith
+//@NamedQuery(name = "update_resort_by_name_string",
+//        query = "UPDATE SET name :name " +
+//                "FROM ResTableEntity e " +
+//                "WHERE e.name like :name")
+
+@Table(name = "res_table", schema = "db_resorts")
 public class ResTableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,6 +30,16 @@ public class ResTableEntity {
     @Basic
     @Column(name = "season")
     private String season;
+
+    public ResTableEntity(String country, String name,  String season, Long price) {
+        this.country = country;
+        this.name = name;
+        this.price = price;
+        this.season = season;
+    }
+
+    public ResTableEntity() {
+    }
 
     public Integer getId() {
         return id;

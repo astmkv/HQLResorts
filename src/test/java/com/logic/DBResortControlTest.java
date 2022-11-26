@@ -1,9 +1,11 @@
 package com.logic;
 
-import com.ResTableEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 class DBResortControlTest {
 
@@ -21,18 +23,45 @@ class DBResortControlTest {
     @Test
     void getStartsWith() {
         DBResortControl bdRC = new DBResortControl();
-        bdRC.getStartsWith("n");
+        List<ResTableEntity> res = bdRC.getStartsWith("t");
+        for (ResTableEntity item : res) {
+            System.out.println(item.getName() + " " +
+                    item.getCountry() + " " +
+                    item.getSeason() + " " +
+                    item.getPrice());
+        }
     }
 
     @Test
     void getResByPriceLimit() {
-    }
+        DBResortControl bdRC = new DBResortControl();
+        List<ResTableEntity> res = bdRC.getResByPriceLimit(1000L);
+        for (ResTableEntity item : res) {
+            System.out.println(item.getName() + " " +
+                    item.getCountry() + " " +
+                    item.getSeason() + " " +
+                    item.getPrice());
+        }
 
-    @Test
-    void updateStartsWith() {
     }
 
     @Test
     void lowerPriceAbove1000() {
+    }
+
+    @Test
+    void updateResortByName() {
+        DBResortControl bdRC = new DBResortControl();
+        String targetName = "u";
+        ResTableEntity res = new ResTableEntity("newCountry",
+                "newTest",
+                "newSeason",
+                -1L);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+
+        System.out.println(bdRC.updateResortByName(res,targetName));
+
     }
 }
